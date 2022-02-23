@@ -68,7 +68,7 @@ def get_function_parameters(func: str) -> Tuple[Dict[str, str], Dict[str, Tuple[
                 arg_to_type[arg.strip()] = type_hint.strip()
             else:
                 arg_to_type[param.strip()] = None
-    
+
     return arg_to_type, kwargs_to_default_and_type
 
 def get_super_call(_init_method: str) -> str:
@@ -152,7 +152,8 @@ def push_inherited_methods(sub_class_type: Type, super_class_type: Type, new_cla
 def inline_class(_class: Type):
     parents = _class.__mro__[1:-1]
     if len(parents) == 0:
-        raise ValueError("Provided class inherits jack shit")
+        #raise ValueError("Provided class inherits jack shit")
+        return inspect.getsource(_class)
     first_parent = parents[0] # only dealing with you for now
     #init_source: Optional[str] = None
 
